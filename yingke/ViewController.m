@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SearchViewController.h"
 
 @interface ViewController ()
 
@@ -16,12 +17,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor whiteColor];
+    // left
+    self.parentViewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"card_search"] highImage:[UIImage imageNamed:@"card_search"] target:self action:@selector(search:)];
+    
+    // right
+    self.parentViewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"card_message"] highImage:[UIImage imageNamed:@"card_message"] target:self action:@selector(message)];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
+- (void)search:(id)sender{
+    DebugLog(@"搜索");
+    SearchViewController *searchVc = [[SearchViewController alloc] init];
+    
+    [self.navigationController pushViewController:searchVc animated:YES];
+}
+- (void)message{
+    ViewController *vc = [[ViewController alloc]init];
+   
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 @end
